@@ -45,7 +45,7 @@ good ideas for globals
 globals() & locals() can be used to identify what's in the respective
 namespace
 
-pass-by-assignment - arguments to funcs are passed by object reference
+pass-by-assignment02 - arguments to funcs are passed by object reference
 - mutable objects will be modified (the actual reference) if called
 and modded by a func
 - pass a copy to avoid this

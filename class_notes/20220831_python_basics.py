@@ -19,7 +19,7 @@ why does the index start at 0?
     - in C, it would enter the memory space of a different element
 
 strings are immutable
-- individual elements of a string cannot be modified after assignment
+- individual elements of a string cannot be modified after assignment02
 - the entire variable must be re-assigned
 - can also slice parts of a string and concatenate them
 
