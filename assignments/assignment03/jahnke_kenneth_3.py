@@ -7,6 +7,12 @@ Copyright (C) 2022 Kenneth W. Jahnke
 """
 
 
+# https://www.quora.com/Is-there-a-factorial-function-but-for-addition
+# https://en.wikipedia.org/wiki/Triangular_number
+def triangular_number():
+    pass
+
+
 def main():
     pass
 
