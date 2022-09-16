@@ -6,6 +6,7 @@ Copyright (C) 2022 Kenneth W. Jahnke
 
 """
 
+# FIXME - mystr[start:end] --> easy version of print("CSCI161L")
 
 # https://www.quora.com/Is-there-a-factorial-function-but-for-addition
 # https://en.wikipedia.org/wiki/Triangular_number
