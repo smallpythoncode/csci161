@@ -4,12 +4,40 @@ CSCI 161, Fall, Lecture Sect 02, Lab Sect L03 (Online)
 Assignment 03
 Copyright (C) 2022 Kenneth W. Jahnke
 
-# TODO - write assignment description
+Assignment:
+    1. Input a number from the user and find the sum of all numbers
+    starting from 1 to the given input using while loop.
+
+    2. Input a number and check if it is prime or not using for loop.
+
+    3. Input two numbers (first number should be smaller than second,
+    otherwise show error message) and print all odd numbers between the
+    given input numbers using while loop.
+
+    4. Assign a string “CSCI161L” to a variable and print “CSCI” only
+    using break statement.
+
+    5. Print the numbers from 1 to 20 excluding 5, 10, 15 using continue
+    statement.
+
+Functions:
+    triangular_number_prompt()
+        - Prompts user for an n value for triangular number calculation.
+    triangular_number(n=None)
+        - Calculates the triangular number a given value n.
+    prime_number_checker(num=None)
+        - Checks if a number is prime.
+    odds_between_two_integers()
+        - Identifies the odd integers between two user-defined integers.
+    print_this_string()
+        - Prints the first four characters of the string 'CSCI161L'.
+    print_these_numbers()
+        Prints the numbers from 1 to 20 except 5, 10, and 15.
 """
 
 
 def triangular_number_prompt():
-    """Prompts the user for an n value for triangular number calculation.
+    """Prompts user for an n value for triangular number calculation.
 
     .. note::
         This function is designed to work in conjunction with
@@ -43,20 +71,21 @@ def triangular_number(n=None):
 
     A triangular number is the sum of the first n positive integers.
 
-    For more info: https://en.wikipedia.org/wiki/Triangular_number
+    For more information:
+    https://en.wikipedia.org/wiki/Triangular_number
 
     :param n:
-        If n=None, triangular_number_prompt() will be called so the user may
-        input a value for n. Otherwise, n may be specified as an int at
-        call. If not an int, the user will be prompted if they would like to
-        specify a new value. If so, that new value will be used.
+        If n=None, triangular_number_prompt() will be called so the user
+        may input a value for n. Otherwise, n may be specified as an int
+        at call. If not an int, the user will be prompted if they would
+        like to specify a new value. If so, that new value will be used.
     :type n: int or None
     :return:
-        If a valid n value was given, a tuple with the triangular number as
-        the first element and the n value as the second element. Otherwise,
-        a tuple with -1 as an indicator of invalidity as the first element
-        and the n value as the second element (for uniform return as a
-        tuple).
+        If a valid n value was given, a tuple with the triangular number
+        as the first element and the n value as the second element.
+        Otherwise, a tuple with -1 as an indicator of invalidity as the
+        first element and the n value as the second element (for uniform
+        return as a tuple).
     :rtype: tuple[int, int]
     """
     # tri num will only be calculated if n is type int
@@ -106,24 +135,25 @@ def prime_number_checker(num=None):
     """Checks if a number is prime.
 
     :param num:
-        An integer to check for primality. If None, the user is prompted for
-        an integer to check.
+        An integer to check for primality. If None, the user is prompted
+        for an integer to check.
     :type num: int or None
     :except ValueError:
-        If given value for num cannot be converted to an int, the first and
-        second elements of return are marked False.
+        If given value for num cannot be converted to an int, the first
+        and second elements of return are marked False.
     :return:
         A tuple with three elements: Firstly, the value assigned to num.
-        This value will be converted to an int if possible. Secondly, a bool
-        indicating if the value of num is an int. Thirdly, a bool indicating
-        if num is a prime number.
+        This value will be converted to an int if possible. Secondly, a
+        bool indicating if the value of num is an int. Thirdly, a bool
+        indicating if num is a prime number.
     :rtype: tuple[any, bool, bool]
     """
     num_is_int = True
     num_is_prime = True
 
     # code may be improved by adding a loop to verify an int was entered
-    # alternatively, a separate function similar to triangular_number_prompt()
+    # alternatively, a separate function similar to
+    # triangular_number_prompt() found in this module
     if num is None:
         num = input("Enter an integer to check if it a prime number: ")\
             .strip()
@@ -149,32 +179,32 @@ def prime_number_checker(num=None):
 def odds_between_two_integers():
     """Identifies the odd integers between two user-defined integers.
 
-    This function has two inputs: Firstly, an integer. Secondly, a greater
-    integer. If the inputs are valid, the odd integers between the two
-    inputs will be identified.
+    This function has two inputs: Firstly, an integer. Secondly, a
+    greater integer. If the inputs are valid, the odd integers between
+    the two inputs will be identified.
 
     ..note::
         The while loop specified by the assignment is implemented in
         'TASK 3' block of main().
     .. note::
-        The assignment does not mandate any exception handling aside from
-        displaying a message. This function may be improved by implementing
-        a loop to correct exceptions as they arise.
+        The assignment does not mandate any exception handling aside
+        from displaying a message. This function may be improved by
+        implementing a loop to correct exceptions as they arise.
     .. note::
-        The functionality of this function may be improved by implementing
-        default None parameters to indicate that integers are to be input
-        at call.
+        The functionality of this function may be improved by
+        implementing default None parameters to indicate that integers
+        are to be input at call.
 
     :except ValueError:
-        Results in a return message indicating that integers are the only
-        valid inputs.
+        Results in a return message indicating that integers are the
+        only valid inputs.
     :return:
-        If the inputs meet the conditions specified, the return is a list of
-        odd integers between the two inputs. If the conditions are not met,
-        the return is list with a single element, a str as a description of
-        the fault. If the conditions are met but there are no odd integers
-        between the inputs, the return is a list with single element, a str
-        as an innocuous message.
+        If the inputs meet the conditions specified, the return is a
+        list of odd integers between the two inputs. If the conditions
+        are not met, the return is list with a single element, a str as
+        a description of the fault. If the conditions are met but there
+        are no odd integers between the inputs, the return is a list
+        with single element, a str as an innocuous message.
     """
     odd_nums = []
 
@@ -192,9 +222,7 @@ def odds_between_two_integers():
             odd_nums.append("Integers are the only valid inputs for this "
                             "function.")
         else:
-            if first_num == second_num:
-                odd_nums.append("The two integers input are identical.")
-            elif first_num > second_num:
+            if first_num >= second_num:
                 odd_nums.append("The second integer must be greater than the "
                                 "first.")
             else:
@@ -230,9 +258,31 @@ def print_this_string():
             print(char)
 
 
-# TODO
 def print_these_numbers():
-    pass
+    """Prints the numbers from 1 to 20 except 5, 10, and 15.
+
+    .. note::
+        Assignment verbiage: "Print the numbers from 1 to 20 excluding
+        5, 10, 15 using continue statement."
+
+        The verbiage was interpreted as 1 to 20 inclusive, thus, 20 is
+        included in the print-out.
+
+    :return: None
+    """
+    # an alternate (and arguably better) solution to the problem using a
+    # for loop
+    # for num in range(1, 21):
+    #     if (num % 5 != 0) or (num == 20):
+    #         print(num)
+
+    i = 0
+    while i < 20:
+        i += 1
+        if (i % 5 == 0) and (i != 20):
+            # the use of 'continue' keyword specified by the assignment
+            continue
+        print(i)
 
 
 def main():
@@ -260,11 +310,12 @@ def main():
     # for i in odds:
     #     print(i)
 
-    # the while loop specified by the assignment
     odds = odds_between_two_integers()
+    # working copy implemented should original data need to be preserved
     working_copy_odds = odds.copy()
     len_of_loop = len(working_copy_odds)
 
+    # the while loop specified by the assignment
     while len_of_loop > 0:
         print(working_copy_odds[0])
         del working_copy_odds[0]
@@ -274,11 +325,10 @@ def main():
     print_this_string()
 
     print("\nTASK 5")
-    # TODO
+    print_these_numbers()
 
 
 if __name__ == "__main__":
-
+    main()
 
 # All work and no play makes Jack a dull boy.
-
