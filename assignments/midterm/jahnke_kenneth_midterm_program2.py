@@ -1,11 +1,11 @@
 """Jahnke, Student ID: 0808831
 kenny.jahnke@ndus.edu / smallpythoncode@gmail.com
 CSCI 161, Fall, Lecture Sect 02, Lab Sect L03 (Online)
-Midterm, Program 1
+Midterm, Program 2
 Copyright (C) 2022 Kenneth Wayne Jahnke
 
 Instructions:
-    Write a program that imports the math module.  Prompt the user to
+    Write a program that imports the math module. Prompt the user to
     enter an integer value, the number of degrees in an angular measure.
     Use functions from the math module to convert the degrees into
     radians, and to calculate the cosine of the resulting radians.
@@ -31,6 +31,9 @@ radians = math.radians(degrees)
 cosine = math.cos(radians)
 
 print(
-    f"\nDegrees: {degrees}"
-    f"\nRadians: {radians:.4f} or {radians / math.pi:.4f}π"
+    f"\nDegrees: {degrees}°"
+    f"\nRadians: {radians:.8f} or {radians / math.pi:.8f}π"
+    f"\nCosine: {cosine:.8f}"
 )
+
+# All work and no play makes Jack a dull boy.
