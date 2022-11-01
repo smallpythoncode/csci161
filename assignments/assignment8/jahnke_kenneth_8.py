@@ -46,6 +46,8 @@ class Account:
         self.card = 10.0 if card is None else float(card)
         self.limit = 50 if limit is None else int(limit)
 
+
+
     @staticmethod
     def balance_format(balance, max_figures=10):
         """Formats balance for printing.
@@ -150,13 +152,84 @@ class Account:
     def cashServices(self):
         """Prints the current and available balances of the accounts.
 
+        Per the assignment instructions, only deposits are accepted
+        for this method.
+
         cashServices method name (camelCase) used as specified by
         assignment instructions. This is in opposition to PEP 8
         convention of snake_case for method names.
 
+        # TODO add params
+        :except ValueError:
+            The amount entered for deposit cannot be represented as a
+            float.
+        :return: None
         """
-        pass
-        # TODO
+        print("Note: Per assignment instructions, only deposits and "
+              "payments on Card balance are made using this method.")
+
+        print(
+            "To make a deposit/payment, enter:\n"
+            "   <account type code><SPACE><amount to deposit/pay>\n"
+            "Account type codes:\n"
+            "    'S' - Savings"
+            "    'K' - Checking"
+            "    'C' - Card"
+        )
+
+        account = None
+        amount = None
+        target = None
+        banner = None
+
+        while True:
+            invalid_input = "Invalid Input. Enter valid input or 'EXIT'."
+            account_amount = input("Account and amount: ").strip().upper()
+
+            if account_amount == "EXIT":
+                break
+
+            account_amount = account_amount.split()
+            if len(account_amount) != 2:
+                print(invalid_input)
+                continue
+            account, amount = account_amount[0], account_amount[1]
+
+            if account in ["S", "K", "C"]:
+                if account == "S":
+                    target = self.savings
+                    banner = "Savings"
+                elif account == "K":
+                    target = self.checking
+                    banner = "Checking"
+                else:
+                    target = self.card
+                    banner = "Card"
+            else:
+                print(invalid_input)
+                continue
+
+            try:
+                amount = float(amount)
+            except ValueError:
+                print(invalid_input)
+                continue
+            else:
+                if amount < 0.01:  # less than a penny
+                    print("A deposit is an increase of an account balance.\n"
+                          "Enter a valid deposit amount or 'EXIT'")
+                    continue
+
+                # eliminate fractions of a penny
+                amount = amount * 100
+                amount = amount // 1
+                amount = amount // 100
+                break
+
+        if target is self.card:
+            if amount + self.card > self.limit:
+                # TODO
+                pass
 
 
 def menu(account):
