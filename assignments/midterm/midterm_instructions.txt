@@ -1,0 +1,37 @@
+Instead of a midterm exam, we will have a programming project with multiple parts, worth a total of 100 points.  The instructions are as follows:
+
+CS 161 midterm programs
+1: Write a program that uses the input command to have the user enter an integer number.  
+   Recast the input string to an integer and a floating point number.  
+   Print the number as a string, as an integer, and as a float.  Use the type()
+   function and the id() function to print out the type and id of each of the items printed.
+2: Write a program that imports the math module.  Prompt the user to enter an integer
+   value, the number of degrees in an angular measure.  Use functions from the math 
+   module to convert the degrees into radians, and to calculate the cosine of the 
+   resulting radians.  Print out the degrees, radians, and the cosine value.
+3: Write a program with a user-defined function called 'clamp', which takes as an input
+   a single integer.  If the input number is negative, have the function return 
+   0 (zero).  If the value is postivie and greater than 255, have the function return
+   255.  If the value is between 0 and 255 inclusive, have the function return the number 
+   unaltered.  Write a main program section that prompts the user to enter a number,
+   recasts it to an integer, and calls the clamp function.  The program should then 
+   print out the value returned by the function call.
+4: Write a program that creates an empty list, and then has a for loop that asks
+   the user to put in 5 names, adding each name to the list as the program goes
+   (the names are single words).  When this is done, sort the list alphabetically,
+   and print it out.
+5: Write a program with a class definition 'Aircraft'.  The constructor should take in
+   arguments for tail_number, latitude, longitude, altitude, heading, and speed.  These
+   should be stored in a dictionary.  The key is the parameter name (e.g. 'tail_number'),
+   and the value will be the argument passed to the constructor (e.g. 'N51123ND').
+   Also have a method definition in the class called
+   'print_plane', which prints out all of these values for a given instantiation of
+   the class.  In the main section of the program, have the user enter the arguments listed
+   above, call the constructor, and make three different instantiations of the class,
+   called plane1, plane2, and plane3.  Print the contents of these three objects by
+   calling the 'print_plane' method from them.
+
+When you are done with the programs, place them all into a tar file, and upload that file to BlackBoard.
+
+MIDTERM UPDATE
+If anyone has done the midterm on windows and is having issues making a .tar file, you can also hand it in as a .zip file.

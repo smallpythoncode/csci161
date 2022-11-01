@@ -76,5 +76,66 @@ Common errors:
   - putting in negative number is not 0 or 1
   - -1 will recurse to -2, -3, etc. so
 
-pickup at 39 min mark
+do we do the error checking inside the function or where it is called?
+- inside the func is more robust
+- waste of processing time
+- use of func properly, it is a moot point
+
+- better at call
+- only done once
+- if loaded into a library, the user must read the docs
+  - rage for not rtfm
+
+commonly, programmers will use 2 funcs for recursion
+- an outer function to be called from other parts
+- an inner function is intended only to be called from that outer
+  - leading _ to indicate not intended for user call
+- outer func more intuitive
+  - user only interacts with outer, fine details in inner
+
+RECURSIVE MATH FUNCS
+- fibonacci sequence
+0 1 1 2 3 5 8 13 21 34
+
+compute for a specific number of times
+
+def fibonacci(v1, v2, run_cnt):
+    print(v1, "+", v2, "=", v1+v2)
+
+    if run_cnt <=1:  # base case
+                     # ran for user's number of steps
+        pass  # Do nothing
+    else:  # Recursive case
+        fibonacci(v2, v1+v2, run_cnt-1)
+
+why is fibonacci interesting?
+- golden ratio
+- golden spiral
+- show up in nature
+- some parts of human body
+- drives numerologists nuts
+- popular in study of aesthetics
+
+subscribe to fibonacci quarterly, magazine
+
+recursion can be used to calculate the greatest common divisor
+solution calculation
+- what is the largest number that is divisible by 2 nums
+- see Euclid, 300 BC
+
+def gcd(n1, n2):
+    if n1 % n2 == 0:  # n2 is a common factor
+        return n2
+    else:
+        return gcd(n2, n1%n2)
+
+the depth of recursion is measure of how many recursive calls of a func
+that have been made, but have not yet returned
+each recursive call requires the Python interpret to allocate more
+memory, and eventually all system memory could be used
+thus, a recursion depth limit exists, accessible using the func
+sys.getrecursionlimit()
+the default depth limit is typically 1000.
+the limit can be changed using sys.setrecursionlimit()
+exceeding the depth limit causes RuntimeError to occur
 """

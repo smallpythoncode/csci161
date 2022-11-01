@@ -1,8 +1,3 @@
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
-
-# All work and no play makes Jack a dull boy.
+fig = 100.4
+g = int(fig)
+print(g)
