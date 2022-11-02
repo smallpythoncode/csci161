@@ -12,7 +12,7 @@ Classes:
 
 class Account:
     """A simple representation of various bank accounts.
-
+    
     Methods:
         balance_format
             - Static method that formats balance for printing.
@@ -69,9 +69,9 @@ class Account:
 
         if dollars_cents[0][0] == "-":  # a dollar amount
             if len(dollars_cents[0][1:]) > max_figures:
-                return "CONTACT BANK"  # too much/little $ for acct type
+                return "CONTACT BANK"  # too much/too little $ for acct type
         elif len(dollars_cents[0]) > max_figures:
-            return "CONTACT BANK"  # too much/little $ for acct type
+            return "CONTACT BANK"  # too much/too little $ for acct type
 
         if len(dollars_cents[1]) != 2:  # cents as 2 digits
             dollars_cents[1] = dollars_cents[1] + "0"
@@ -151,7 +151,7 @@ class Account:
 
         Per the assignment instructions, only deposits are accepted
         for this method.
-
+        
         cashServices method name (camelCase) used as specified by
         assignment instructions. This is in opposition to PEP 8
         convention of snake_case for method names.
@@ -195,7 +195,7 @@ class Account:
 
             # This section may be used if payments to Card balance were
             # part of the assignment.
-
+            
             # if account in ["S", "K", "C"]:
             #     if account == "S":
             #         target = self.savings
@@ -235,11 +235,11 @@ class Account:
                 amount = amount // 1
                 amount = amount // 100
 
-            # The student wrote this section to account for payments
-            # made to Card balance. The student re-read the assignment
-            # instructions and realized card balances are not
-            # manipulated in this assignment.
-
+            # The student wrote this section to account for payments made
+            # to card balance. The student re-read the assigment
+            # instructions and realized card balances are not manipulated
+            # in this assignment.
+            
             # if target is self.card:
             #     if amount > self.card:
             #         print(
@@ -248,32 +248,22 @@ class Account:
             #             f"    Please make a payment of this amount or less."
             #         )
             #         continue
-
+                
             break
 
         if normal_ops:  # balances are not affected by 'EXIT' input
             if target is self.savings:
                 self.savings = self.savings + amount
-                figure_check = self.balance_format(self.savings)
-                if figure_check != "CONTACT BANK":
-                    print(f"Your new {acct_type} balance is "
-                          f"{figure_check}.")
-                else:
-                    print("    There appears to be a problem. Please contact "
-                          "the bank.")
+                print(f"Your new {acct_type} balance is "
+                      f"{self.balance_format(self.savings)}.")
             else:
                 self.checking = self.checking + amount
-                figure_check = self.balance_format(self.checking)
-                if figure_check != "CONTACT BANK":
-                    print(f"Your new {acct_type} balance is "
-                          f"{figure_check}.")
-                else:
-                    print("    There appears to be a problem. Please contact "
-                          "the bank.")
+                print(f"Your new {acct_type} balance is "
+                      f"{self.balance_format(self.checking)}.")
 
-        # This section may be used if payments to Card balance were part
-        # of the assignment.
-
+        # This section may be used if payments to Card balance were
+        # part of the assignment.
+       
         # if normal_ops:  # balances are not affected by 'EXIT' input
         #     if target is self.savings:
         #         self.savings = self.savings + amount
@@ -287,7 +277,7 @@ class Account:
         #         self.card = self.card - amount
         #         print(f"Your new {acct_type} balance is "
         #             f"{self.balance_format(self.card)}.")
-
+            
 def menu(account):
     """A menu with options to check balance or exit the menu.
 
@@ -317,15 +307,15 @@ def menu(account):
 
 
 def main():
-    # Checks if blank is entered for name.
-    # Current version does not make further checks for name
+    # Checks if blank if entered for name.
+    # Current version does not make make further checks for name
     # plausibility.
     # Example: for char in person1 check if ischar()
     person1 = input("Please enter your name: ").strip().title()
     while len(person1) < 1:
         print("    Name cannot be blank.")
         person1 = input("Please enter your name: ").strip().title()
-
+    
     account1 = Account(person1)
     menu(account1)
 

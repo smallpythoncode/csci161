@@ -7,19 +7,22 @@ Copyright (C) 2022 Kenneth Wayne Jahnke
 Classes:
     Account
         - A simple representation of various bank accounts.
+
+
+
+=================
+# TODO
+
+
+=================
+
+
+
 """
 
 
 class Account:
     """A simple representation of various bank accounts.
-
-    Methods:
-        balance_format
-            - Static method that formats balance for printing.
-        displayBalance
-            - Prints the current and available balances of the accounts.
-        cashServices
-            - Allows the user to depoit to Savings or Checking.
     """
     def __init__(self, name, savings=None, checking=None, card=None,
                  limit=None):
@@ -47,7 +50,7 @@ class Account:
 
     @staticmethod
     def balance_format(balance, max_figures=10):
-        """Static method that formats balance for printing.
+        """Formats balance for printing.
 
         :param float balance:
             The balance for which the number of digits is calculated.
@@ -69,9 +72,9 @@ class Account:
 
         if dollars_cents[0][0] == "-":  # a dollar amount
             if len(dollars_cents[0][1:]) > max_figures:
-                return "CONTACT BANK"  # too much/little $ for acct type
+                return "CONTACT BANK"  # too much/too little $ for acct type
         elif len(dollars_cents[0]) > max_figures:
-            return "CONTACT BANK"  # too much/little $ for acct type
+            return "CONTACT BANK"  # too much/too little $ for acct type
 
         if len(dollars_cents[1]) != 2:  # cents as 2 digits
             dollars_cents[1] = dollars_cents[1] + "0"
@@ -93,8 +96,8 @@ class Account:
             displayBalance should print using center alignment.
             check_balance specified different parts. Although assignment
             instructions indicate significant whitespace between "$"
-            and the dollar figure, it was eliminated for ease of
-            implementation and aesthetics.
+            and the dollar figure, this implementation eliminates that
+            whitespace for ease of implementation and aesthetics.
 
         :return: None
         """
@@ -147,7 +150,7 @@ class Account:
         )
 
     def cashServices(self):
-        """Allows the user to depoit to Savings or Checking.
+        """Prints the current and available balances of the accounts.
 
         Per the assignment instructions, only deposits are accepted
         for this method.
@@ -156,137 +159,78 @@ class Account:
         assignment instructions. This is in opposition to PEP 8
         convention of snake_case for method names.
 
+        # TODO add params
         :except ValueError:
             The amount entered for deposit cannot be represented as a
             float.
         :return: None
         """
-        print("Note: Per assignment instructions, only deposits are "
-              "made using this method.")
+        print("Note: Per assignment instructions, only deposits and "
+              "payments on Card balance are made using this method.")
 
         print(
             "To make a deposit/payment, enter:\n"
             "   <account type code><SPACE><amount to deposit/pay>\n"
             "Account type codes:\n"
-            "    'S' - Savings\n"
-            "    'K' - Checking\n"
-            # "    'C' - Card\n"
+            "    'S' - Savings"
+            "    'K' - Checking"
+            "    'C' - Card"
         )
 
         account = None
         amount = None
         target = None
-        acct_type = None
+        banner = None
 
-        normal_ops = True  # no 'EXIT' as input
         while True:
             invalid_input = "Invalid Input. Enter valid input or 'EXIT'."
             account_amount = input("Account and amount: ").strip().upper()
 
             if account_amount == "EXIT":
-                normal_ops = False
                 break
 
             account_amount = account_amount.split()
             if len(account_amount) != 2:
-                print(f"    {invalid_input}")
+                print(invalid_input)
                 continue
             account, amount = account_amount[0], account_amount[1]
 
-            # This section may be used if payments to Card balance were
-            # part of the assignment.
-
-            # if account in ["S", "K", "C"]:
-            #     if account == "S":
-            #         target = self.savings
-            #         acct_type = "Savings"
-            #     elif account == "K":
-            #         target = self.checking
-            #         acct_type = "Checking"
-            #     else:
-            #         target = self.card
-            #         acct_type = "Card"
-
-            if account in ["S", "K"]:
+            if account in ["S", "K", "C"]:
                 if account == "S":
                     target = self.savings
-                    acct_type = "Savings"
-                else:
+                    banner = "Savings"
+                elif account == "K":
                     target = self.checking
-                    acct_type = "Checking"
+                    banner = "Checking"
+                else:
+                    target = self.card
+                    banner = "Card"
             else:
-                print(f"    {invalid_input}")
+                print(invalid_input)
                 continue
 
             try:
                 amount = float(amount)
             except ValueError:
-                print(f"    {invalid_input}")
+                print(invalid_input)
                 continue
             else:
                 if amount < 0.01:  # less than a penny
-                    # print("    A deposit/payment must be a positive amount.\n"
-                    print("    A deposit must be a positive amount.\n"
-                          "    Enter a valid deposit amount or 'EXIT'")
+                    print("A deposit is an increase of an account balance.\n"
+                          "Enter a valid deposit amount or 'EXIT'")
                     continue
 
                 # eliminate fractions of a penny
                 amount = amount * 100
                 amount = amount // 1
                 amount = amount // 100
+                break
 
-            # The student wrote this section to account for payments
-            # made to Card balance. The student re-read the assignment
-            # instructions and realized card balances are not
-            # manipulated in this assignment.
+        if target is self.card:
+            if amount + self.card > self.limit:
+                # TODO
+                pass
 
-            # if target is self.card:
-            #     if amount > self.card:
-            #         print(
-            #             f"    Your current Card balance is "
-            #             f" {self.balance_format(self.card)}.\n"
-            #             f"    Please make a payment of this amount or less."
-            #         )
-            #         continue
-
-            break
-
-        if normal_ops:  # balances are not affected by 'EXIT' input
-            if target is self.savings:
-                self.savings = self.savings + amount
-                figure_check = self.balance_format(self.savings)
-                if figure_check != "CONTACT BANK":
-                    print(f"Your new {acct_type} balance is "
-                          f"{figure_check}.")
-                else:
-                    print("    There appears to be a problem. Please contact "
-                          "the bank.")
-            else:
-                self.checking = self.checking + amount
-                figure_check = self.balance_format(self.checking)
-                if figure_check != "CONTACT BANK":
-                    print(f"Your new {acct_type} balance is "
-                          f"{figure_check}.")
-                else:
-                    print("    There appears to be a problem. Please contact "
-                          "the bank.")
-
-        # This section may be used if payments to Card balance were part
-        # of the assignment.
-
-        # if normal_ops:  # balances are not affected by 'EXIT' input
-        #     if target is self.savings:
-        #         self.savings = self.savings + amount
-        #         print(f"Your new {acct_type} balance is "
-        #               f"{self.balance_format(self.savings)}.")
-        #     elif target is self.checking:
-        #         self.checking = self.checking + amount
-        #         print(f"Your new {acct_type} balance is "
-        #               f"{self.balance_format(self.checking)}.")
-        #     else:
-        #         self.card = self.card - amount
-        #         print(f"Your new {acct_type} balance is "
-        #             f"{self.balance_format(self.card)}.")
 
 def menu(account):
     """A menu with options to check balance or exit the menu.
@@ -298,7 +242,7 @@ def menu(account):
     while True:
         print("\nMenu:",
               "    Option 1: Display Balance",
-              "    Option 2: Cash Services (deposit only)",
+              "    Option 2: Cash Services",
               "    Option 3: Exit",
               sep="\n")
         prompt = input("Enter an option number: ").strip()
@@ -317,16 +261,11 @@ def menu(account):
 
 
 def main():
-    # Checks if blank is entered for name.
-    # Current version does not make further checks for name
-    # plausibility.
-    # Example: for char in person1 check if ischar()
-    person1 = input("Please enter your name: ").strip().title()
-    while len(person1) < 1:
-        print("    Name cannot be blank.")
-        person1 = input("Please enter your name: ").strip().title()
-
+    # current version does not check for name plausibility
+    # person1 = input("Please enter your name: ").strip().title() # FIXME temp
+    person1 = "butch"
     account1 = Account(person1)
+
     menu(account1)
 
 
@@ -334,3 +273,5 @@ if __name__ == "__main__":
     main()
 
 # All work and no play makes Jack a dull boy.
+
+# TODO https://stackoverflow.com/questions/41383787/round-down-to-2-decimal-in-python
