@@ -292,6 +292,7 @@ def main():
             else:
                 trigger()
         except LoopBreak:
+            print("Check current working directory for output files.")
             print("Goodbye.")
             break
 
