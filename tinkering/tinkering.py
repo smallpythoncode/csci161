@@ -1,4 +1,3 @@
-x = "dumpy\nbutter"
-print(x)
-x.replace("\n", "")
-print(x)
+x = "xxx-xxx-xxx"
+
+print(x[3])

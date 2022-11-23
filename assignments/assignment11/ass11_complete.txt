@@ -23,7 +23,7 @@ Functions:
         - Exits menu loop in main() by raising the LoopBreak exception.
     main():
         - Script function.
-
+    
 Classes:
     LoopBreak(Exception):
         - The exception raised by exit_func().
@@ -146,7 +146,7 @@ def ssn_search(ssn_dict):
     for key, value in ssn_dict.items():
         if value["ssn"] == prompt:
             return key
-
+        
     return None
 
 
@@ -162,7 +162,7 @@ def employee_id_details(employee_id, detail_dict):
         is verified by detail_dict_creator(), both in main() ).
 
     :param str employee_id:
-        The key indicating values in detail_dict.
+        The key that points to values in detail_dict.
     :param dict detail_dict:
         Contains the relevant employment details.
     :return:
@@ -201,29 +201,29 @@ def employee_id_details(employee_id, detail_dict):
 
 def display_sorted_details(detail_dict):
     """Prints elements of detail_dict sorted by employee_id.
-
+    
     employee_id is the key set of detail_dict.
-
+    
     .. note::
         The current version of this function does not implement
         exception handling. Exceptions are expected to be limited anyway
         as the only calls to this func (if the module is run as a
         script) have already verified the integrity of the parameters
         (i.e., detail_dict is verified by detail_dict_creator() ).
-
+        
     :param dict detail_dict:
         Contains the relevant employment details.
     :return: None
     """
     sorted_id = sorted(detail_dict.keys())
-
+    
     header = "Employee Details"
     print(f"{header}\n" + "=" * len(header))
     for i in sorted_id:
-        print(i + " - " + detail_dict[i]["name"] + " - " +
-              detail_dict[i]["date_of_joining"] + " - " +
-              detail_dict[i]["department"] + " - " +
-              detail_dict[i]["annual_salary"])
+        print(i + " - " + detail_dict[i]["name"] + " - " + \
+            detail_dict[i]["date_of_joining"] + " - " + \
+            detail_dict[i]["department"] + " - " + \
+            detail_dict[i]["annual_salary"])
 
 
 def menu(option_set):
@@ -253,7 +253,7 @@ def menu(option_set):
 class LoopBreak(Exception):
     """The exception raised by exit_func().
 
-    The triggers within menu_options dict in main indicate what action to
+    The triggers within the options dict in main indicate what action to
     take based on the option chosen by the user. To exit the program,
     the option prompt loop must be broken. Since the 'break' keyword
     cannot be stored as a dictionary value, another method is required
@@ -292,6 +292,9 @@ def main():
               "    then rerun the program.")
         exit()
 
+    data = {ssn_file: ssn_dict_creator(ssn_file),
+            detail_file: detail_dict_creator(detail_file)}
+
     menu_options = {
         "1": {"prompt":
               "Search for an employee using their SSN and display the "
@@ -308,7 +311,7 @@ def main():
         trigger = menu_options[selected_option]["trigger"]
         try:
             data = {ssn_file: ssn_dict_creator(ssn_file),
-                    detail_file: detail_dict_creator(detail_file)}
+            detail_file: detail_dict_creator(detail_file)}
             if trigger is employee_id_details:
                 query = ssn_search(data[ssn_file])
                 if query:

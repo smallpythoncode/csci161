@@ -4,29 +4,6 @@ CSCI 161, Fall, Lecture Sect 02, Lab Sect L03 (Online)
 Assignment 11
 Copyright (C) 2022 Kenneth Wayne Jahnke
 
-Functions:
-    file_check(*files)
-        - Checks if *files are in the current working directory (CWD).
-    ssn_dict_creator(ssn_file)
-        - Creates a dictionary of data from ssn_file.
-    detail_dict_creator(detail_file)
-        - Creates a dictionary of data from detail_file.
-    ssn_search(ssn_dict)
-        - Prompts user for an SSN and searches ssn_dict for it.
-    employee_id_details(employee_id, detail_dict)
-        - Presents formatted details of an employee.
-    display_sorted_details(detail_dict)
-        - Prints elements of detail_dict sorted by employee_id.
-    menu(option_set):
-        - Prints a menu and prompts the user for an option.
-    exit_func():
-        - Exits menu loop in main() by raising the LoopBreak exception.
-    main():
-        - Script function.
-
-Classes:
-    LoopBreak(Exception):
-        - The exception raised by exit_func().
 """
 
 import os
@@ -117,8 +94,16 @@ def detail_dict_creator(detail_file):
     return detail_dict
 
 
+# # FIXME - is this needed?
+# def update_data(**dict_datafile_pair):  # FIXME - kwargs??
+#     for key, value in dict_datafile_pair.items():
+#         test_string = f"{key}\n{value}"
+
+
+# TODO - specify in main None return and id_found return, 
+#  link employee_id_details
 def ssn_search(ssn_dict):
-    """Prompts user for an SSN and searches ssn_dict for it.
+    """ # TODO
 
     .. note::
         The current version of this code does not handle semantic
@@ -130,9 +115,7 @@ def ssn_search(ssn_dict):
         the values. Subsequent dict has ssn (str) and date_of_birth
         (str) as keys.
     :return:
-        Returns the employee_id that matches the SSN prompt if it is in
-        ssn_dict. Otherwise, None.
-    :rtype: str or None
+    :rtype: str or
     """
     while True:
         prompt = input("Enter an SSN: ").strip()
@@ -146,8 +129,8 @@ def ssn_search(ssn_dict):
     for key, value in ssn_dict.items():
         if value["ssn"] == prompt:
             return key
-
-    return None
+        else:
+            return None
 
 
 def employee_id_details(employee_id, detail_dict):
@@ -162,7 +145,7 @@ def employee_id_details(employee_id, detail_dict):
         is verified by detail_dict_creator(), both in main() ).
 
     :param str employee_id:
-        The key indicating values in detail_dict.
+        The key that points to values in detail_dict.
     :param dict detail_dict:
         Contains the relevant employment details.
     :return:
@@ -199,33 +182,6 @@ def employee_id_details(employee_id, detail_dict):
     return print_out
 
 
-def display_sorted_details(detail_dict):
-    """Prints elements of detail_dict sorted by employee_id.
-
-    employee_id is the key set of detail_dict.
-
-    .. note::
-        The current version of this function does not implement
-        exception handling. Exceptions are expected to be limited anyway
-        as the only calls to this func (if the module is run as a
-        script) have already verified the integrity of the parameters
-        (i.e., detail_dict is verified by detail_dict_creator() ).
-
-    :param dict detail_dict:
-        Contains the relevant employment details.
-    :return: None
-    """
-    sorted_id = sorted(detail_dict.keys())
-
-    header = "Employee Details"
-    print(f"{header}\n" + "=" * len(header))
-    for i in sorted_id:
-        print(i + " - " + detail_dict[i]["name"] + " - " +
-              detail_dict[i]["date_of_joining"] + " - " +
-              detail_dict[i]["department"] + " - " +
-              detail_dict[i]["annual_salary"])
-
-
 def menu(option_set):
     """Prints a menu and prompts the user for an option.
 
@@ -251,13 +207,13 @@ def menu(option_set):
 
 
 class LoopBreak(Exception):
-    """The exception raised by exit_func().
+    """The exception raised by the break_loop func.
 
-    The triggers within menu_options dict in main indicate what action to
+    The triggers within the options dict in main indicate what action to
     take based on the option chosen by the user. To exit the program,
     the option prompt loop must be broken. Since the 'break' keyword
     cannot be stored as a dictionary value, another method is required
-    to 'call' a break. The trigger to break the loop calls exit_func
+    to 'call' a break. The trigger to break the loop calls break_loop
     which raises this exception which is then handled by breaking the
     loop.
     """
@@ -265,7 +221,7 @@ class LoopBreak(Exception):
 
 
 def exit_func():
-    """Exits menu loop in main() by raising the LoopBreak exception.
+    """Exits the menu by raising the LoopBreak exception.
 
     The 'break' keyword cannot be stored as dict value. This func is
     called to raise the LoopBreak exception created to be handled by
@@ -279,8 +235,6 @@ def exit_func():
 
 
 def main():
-    """Script function.
-    """
     ssn_file = "Employee_SSN.txt"
     detail_file = "Employee_Details.txt"
 
@@ -292,40 +246,47 @@ def main():
               "    then rerun the program.")
         exit()
 
-    menu_options = {
-        "1": {"prompt":
-              "Search for an employee using their SSN and display the "
-              "employee details.",
-              "trigger": employee_id_details},
-        "2": {"prompt":
-              "Sort by Employee ID and display the employee details.",
-              "trigger": display_sorted_details},
-        "3": {"prompt": "Exit", "trigger": exit_func}
-    }
+    data = {ssn_file: ssn_dict_creator(ssn_file),
+            detail_file: detail_dict_creator(detail_file)}
 
-    while True:
-        selected_option = menu(menu_options)
-        trigger = menu_options[selected_option]["trigger"]
-        try:
-            data = {ssn_file: ssn_dict_creator(ssn_file),
-                    detail_file: detail_dict_creator(detail_file)}
-            if trigger is employee_id_details:
-                query = ssn_search(data[ssn_file])
-                if query:
-                    print_out = trigger(query, data[detail_file])
-                    print(print_out)
-                else:
-                    print(f"Queried SSN not found in {ssn_file}")
-            elif trigger is display_sorted_details:
-                trigger(data[detail_file])
-            else:
-                trigger()
-        except LoopBreak:
-            print("Goodbye.")
-            break
+    # TODO
+    # menu_options = {
+    #     "1": {"prompt":
+    #           "Search for an employee using their SSN and display the "
+    #           "employee details.",
+    #           "trigger": add_student,
+    #           "file": ssn_file},  # file searched for ssn
+    #     "2": {"prompt":
+    #           "Sort by Employee ID and display the employee details.",
+    #           "trigger": add_faculty,
+    #           "file": detail_file},  # file to sort by employee_id
+    #     "4": {"prompt": "Exit", "trigger": exit_func}
+    # }
+
+    # # FIXME - update_data() in menu loop at option call
+    # ssn_data = ssn_dict_creator(ssn_file)
+    # # for key, value in ssn_data.items():
+    # #     print(f"{key}: {value}")
+    #
+    # print()
+    #
+    # # FIXME - update_data() in menu loop at option call
+    # detail_data = detail_dict_creator(detail_file)
+    # # for key, value in detail_data.items():
+    # #     print(f"{key}: {value}")
+    #
+    # test = update_data(ssn_data=ssn_file)
+    # print(test)
+
+    print(data)  # FIXME
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+
+    test_detail = detail_dict_creator("Employee_Details.txt")
+    test_ssn = ssn_dict_creator("Employee_SSN.txt")
+    print(test_ssn)
+    print(ssn_search(test_ssn))
 
 # All work and no play makes Jack a dull boy.
