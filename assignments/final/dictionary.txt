@@ -1,0 +1,13 @@
+cat
+act
+dog
+god
+off
+on
+yes
+no
+bark
+meow
+python
+final
+exam

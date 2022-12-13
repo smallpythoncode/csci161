@@ -1,0 +1,44 @@
+Instead of a final exam for the course, we will have a final programming project.
+The format will be the same as the midterm programming project: five programs,
+each in a separate file.  When done, put all the files into either a .tar or a
+.zip archive file, and upload that file to BlackBoard.
+
+CS 161 Final Project
+5 parts:
+
+Part 1:  Write a python program which contains a user-defined function called 'input_data'.
+This function should have a try/except block in it that will attempt to input a list of
+three players' last name and their associated number.  Each player name and number should
+be stored in an individual dictionary, one dictionary for each list element.  In other words,
+you will have a list of dictionaries.  For example, 'Jones', 44 would
+be one such pair of data.  These name/number pairs should be
+placed in a dictionary object, and that object added to the list.  
+The list should be returned by the function.  If there is an error inputting
+the names, the except block should set the player names to 'none', 0 for all three cases.
+
+Part 2:  Take the function from Part 1 and place it into a loadable module called Players.
+Write a program that imports Players and calls the function, thus building the list, then 
+prints the list returned by the module.
+
+Part 3:  Write a program that will open a text file called textfile1.txt for reading, and
+reads the contents.  Determine how many lines are in the textfile, and print out the
+number as such: "The file contains X lines.", where X is the number of lines in the file.
+Then have the program print the contents of the file to a second text file called textfile2.txt,
+which your program will create when it runs.
+
+Part 4:  Write a program that contains a class called Car.  The Car class should have a 
+constructor which defines a Car object with the following attributes: make, model, and year.
+Define a second class, which is derived from Car, called Entry, but adds attributes: driver and 
+number.  The derived class should also have a printEntry method which prints out the
+make, model, year, driver, and number of an Entry object.  Finally, write a section of the
+program that creates a list of 3 Entry objects.  For each of these objects, prompt the user
+for the make, model, year, driver, and number.  Finally print out this list.
+
+Part 5:  Write a program that will take in a string, and then compute all possible combinations
+of the letters in the string.  For each of these scramblings, search for that particular 'word'
+in a dictionary file called dictionary.txt, which will be in the local directory.  
+If a match is found, print "Found: <word>" where
+<word> is the scrambling.  For instance, if the input string is 'tac', and the word 'cat'
+exists in dictionary.txt, the program should print out "Found: cat".  The dictionary.txt file
+will be in the same directory as the program is run from, and will only contain about a
+dozen lines, each with a single word.
