@@ -93,7 +93,7 @@ class Entry(Car):
             except ValueError:
                 print("    Driver numbers must be expressed as integers.")
             else:
-                if number in range(1, 99+1):
+                if number in range(0, 99+1):
                     break
                 else:
                     print("    The number entered is out of range.")
